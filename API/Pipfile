@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-dotenv = "*"
+flask-cors = "*"
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+flask = "*"
+gunicorn = "*"
+bcrypt = "*"
+flask-bcrypt = "*"
+uuid = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+dev="flask run"
