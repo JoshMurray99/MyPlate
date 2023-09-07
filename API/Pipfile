@@ -15,9 +15,11 @@ flask-bcrypt = "*"
 uuid = "*"
 
 [dev-packages]
+pytest = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.11"
 
 [scripts]
 dev="flask run"
+test="pytest"
