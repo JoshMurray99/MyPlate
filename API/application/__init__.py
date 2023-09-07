@@ -13,8 +13,16 @@ def create_app(env=None):
 
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URL')
-
+    if env == 'TEST':
+        app.config['TESTING'] = True
+        app.config['DEBUG'] = False
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TEST_DB_URL')
+    
+    else:
+        app.config["TESTING"] = False
+        app.config["DEBUG"] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URL')
+        
     db.init_app(app)
 
     CORS(app)
