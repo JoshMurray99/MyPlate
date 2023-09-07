@@ -9,6 +9,7 @@ export default function Landing() {
     const handleShow = () => setShow(true)
   return (
     <>
+    <p>Hello</p>
     <button onClick={handleShow}>Get started</button>
     <Modal
        show={show}
