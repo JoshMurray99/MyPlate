@@ -1,4 +1,4 @@
-name: Backend CI
+name: Python CI
 
 on:
     push:
@@ -22,18 +22,12 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install pipenv
-        run: |
-          python -m pip install --upgrade pipenv wheel
-      - name: Change working directory to API
-        run: |
-          cd API
-      - name: Activate virtual environment
-        run: |
-          pipenv shell
+      
       - name: Install dependencies
         run: |
-          pipenv install --dev
+          python -m pip install --upgrade pip
+          pip install -r API/requirements.txt
       - name: Test with pytest
         run: |
-          pipenv run test
+          pip install pytest
+          pytest API/
