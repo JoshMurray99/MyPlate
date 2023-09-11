@@ -28,6 +28,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Debug Environment Variables
+        run: |
+          echo "TEST_DB_URL: $TEST_DB_URL"
       
       - name: Install dependencies and run tests in API directory
         working-directory: ./API 
