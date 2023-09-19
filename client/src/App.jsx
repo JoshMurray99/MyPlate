@@ -1,7 +1,9 @@
 import './App.css'
 import {Routes, Route} from "react-router-dom"
 import {
-  Landing
+  Landing,
+  Home,
+  RecipePage
 } from './pages'
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
     <>
      <Routes>
       <Route path="/welcome" element={<Landing/>}/>
+      <Route path="/home" element={<Home/>}/>
+      <Route path="/recipe/:recipeId" element={<RecipePage/>}/>
      </Routes>
     </>
   )
