@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import {Link} from 'react-router-dom'
+import './Home.css'
 
 export default function Home () {
     const API_KEY = import.meta.env.VITE_API_KEY
@@ -52,7 +53,7 @@ export default function Home () {
     }
 
     return (
-        <>
+        <div className="page">
         <form className='recipeForm' onSubmit={(e) => {
             e.preventDefault()
             searchRecipes()
@@ -75,21 +76,24 @@ export default function Home () {
             <button type="submit">search</button>
         </form>
 
-        <div>
-        <h2>Recipes:</h2>
+        <div className="recipeGrid">
         
                 {recipes.map((recipe, index) => (
                     
-                    <div key={index}>
-                        <h2>{recipe.title}</h2>
-                        <Link to = {`/recipe/${recipe.id}`}>
-                        <img src={recipe.image} />
-                        </Link>
+                    <div key={index} className='recipe'>
+                        <Link to = {`/recipe/${recipe.id}`} className="link">
+                        <img src={recipe.image} className="recipeImage" />
+                        
+                        <div className="recipeText">
+                        <h4>{recipe.title}</h4>
                             {sort==="healthiness" || sort==="price"? (null):(recipe.nutrition.nutrients.map((nutrient, nutrientIndex) => (
-                                <p key={nutrientIndex}>
+                                <h6 key={nutrientIndex}>
                                     {nutrient.name}: {nutrient.amount} {nutrient.unit}
-                                </p>
+                                </h6>
+                                
                             )))}
+                            </div>
+                            </Link>
                         
                     </div>
                     
@@ -98,7 +102,7 @@ export default function Home () {
       </div>
 
 
-        </>
+        </div>
 
     )
 }
