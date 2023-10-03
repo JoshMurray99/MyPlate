@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import axios from "axios";
+import './RecipePage.css'
 
 export default function RecipePage() {
     let {recipeId} = useParams()
@@ -45,32 +46,38 @@ export default function RecipePage() {
 
     
   return (
-    <>
+    <div className="recipe-page">
     <h1>{title}</h1>
     <h3>Ready in: {cookTime} minutes</h3>
-    <img src={image} alt={`Image of ${title}`}/>
+    <img src={image} alt={`Image of ${title}`} className="recipe-image"/>
+    <h2>Nutrition</h2>
+    <div className="nutrition-grid">
     {nutrition.map((object) => (
         <div key={object.name}>
             {object.name}: {object.amount} {object.unit}
         </div>
     ))}
+    </div>
     <h2>Ingredients</h2>
+    <ul>
         {ingredients.map((object, index) => (
-            <p key={index}>
-                {object.original}
-            </p>
+            <li key={index}>
+                { object.original}
+            </li>
         ))}
+        </ul>
 
         <h2>Steps</h2>
-
+            <ol>
         {recipeSteps.map((object) => (
-            <p key={object.number}>
-                {object.number + ') ' + object.step}
-                </p>
+            <li key={object.number}>
+                { object.step}
+                </li>
         )) }
+        </ol>
         
         
         
-    </>
+    </div>
   )
 }
